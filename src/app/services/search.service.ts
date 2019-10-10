@@ -1,14 +1,18 @@
+import { Book } from './../../types/book';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Book } from '../models/book';
+import { switchMap, startWith } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SearchService {
   searchByTitleUrl = 'app/books/?title=';
   constructor(private http: HttpClient) {}
 
-  search(term: Observable<string>): Observable<Book[]> {
-    throw new Error('Oops. Not yet implemented...');
+  search(term$: Observable<string>): Observable<Book[]> {
+    return term$.pipe(
+      startWith(''),
+      switchMap(term => this.http.get<Book[]>(this.searchByTitleUrl + term))
+    );
   }
 }

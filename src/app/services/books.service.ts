@@ -1,18 +1,20 @@
 import { Book } from './../../types/book';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { books } from 'src/mocks/books';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class BookService {
   booksUrl = '/api/books';
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   // Gets all the books from our mock server
   getBooks(): Observable<Book[]> {
-    throw new Error('Oops. Not yet implemented...');
+    // return Promise.resolve(books);
+    return this.http.get<Book[]>(this.booksUrl);
   }
 
   // Gets a book by its id from our mock server

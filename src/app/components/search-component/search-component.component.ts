@@ -8,6 +8,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class SearchComponentComponent {
   constructor() {}
 
-  @Output()
-  searchEventEmitter: EventEmitter<string> = new EventEmitter<string>();
+  @Input()
+  termEmitter;
 }
