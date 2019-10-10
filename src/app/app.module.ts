@@ -1,4 +1,3 @@
-import { BooksService } from './books.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -17,12 +16,7 @@ import {
     HeaderComponent
   ],
   imports: [BrowserModule],
-  providers: [
-    // {
-    //   provide: BooksService,
-    //   useClass: BooksService
-    // }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
