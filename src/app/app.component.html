@@ -1,31 +1,7 @@
-<!--Header component-->
-<h1>{{ title }}</h1>
+<bs-header [title]="title"></bs-header>
 
-<hr />
-<br />
-<!--End Header component-->
+<bs-search-component
+  (searchEventEmitter)="search($event)"
+></bs-search-component>
 
-<!--Search component-->
-<div id="search-component">
-  <h4>Search in your library</h4>
-  <input id="search-box" #searchInput />
-</div>
-
-<!--End Search component-->
-
-<hr />
-<br />
-
-<h3>We have {{ books.length }} book(s) in our library</h3>
-<hr />
-<br />
-
-<!--Books container-->
-<div class="container">
-  <a class="item" *ngFor="let book of books">
-    <div class="module hero">
-      <h4>{{ book.title }}</h4>
-    </div>
-  </a>
-</div>
-<!--End Books container-->
+<bs-books [books]="books"></bs-books>

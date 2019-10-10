@@ -13,7 +13,10 @@ export class AppComponent {
   // Use mock data
   books: Book[] = mockBooks;
 
-  search() {
+  search = (input: string) => {
     // Implement the search function
-  }
+    this.books = mockBooks.filter(book =>
+      book.title.toLowerCase().includes(input.toLowerCase())
+    );
+  };
 }
