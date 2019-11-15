@@ -1,41 +1,30 @@
+import { Injectable, Inject } from '@angular/core';
+import { BooksUrl, SearchByTitleUrl } from './urls.service';
 import { Book } from './../../types/book';
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { books } from 'src/mocks/books';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class BookService {
-  booksUrl = '/api/books';
-  private headers = new Headers({ 'Content-Type': 'application/json' });
-
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(BooksUrl) private booksUrl: string,
+    @Inject(SearchByTitleUrl) private searchByTitleUrl: string
+  ) {}
 
   // Gets all the books from our mock server
   getBooks(): Observable<Book[]> {
     // return Promise.resolve(books);
-    return this.http.get<Book[]>(this.booksUrl);
+    throw new Error('Oops. Not yet implemented...');
+  }
+
+  // Implement the search by passing an observable as argument
+  search(term$: Observable<string>): Observable<Book[]> {
+    throw new Error('Oops. Not yet implemented...');
   }
 
   // Gets a book by its id from our mock server
   getBook(id: number): Observable<Book> {
-    throw new Error('Oops. Not yet implemented...');
-  }
-
-  // Adds a new book and re-fetch the list of books.
-  create(title: string): Observable<Book[]> {
-    throw new Error('Oops. Not yet implemented...');
-  }
-
-  // Delete a book and re-fetch the list of books.
-  delete(id: number): Observable<Book[]> {
-    const url = `${this.booksUrl}/${id}`;
-    throw new Error('Oops. Not yet implemented...');
-  }
-
-  // Update a book and re-fetch the list of books.
-  update({ id, title }): Observable<Book[]> {
-    const url = `${this.booksUrl}/${id}`;
     throw new Error('Oops. Not yet implemented...');
   }
 }
