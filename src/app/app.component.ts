@@ -1,7 +1,7 @@
 import { BookService } from './services/books.service';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Book } from '../types/book';
-import { Observable, of, merge } from 'rxjs';
+import { Observable, of, merge, Subject, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +11,11 @@ export class AppComponent implements OnInit {
   title = 'Bookstore By Hackages Lab';
   books$: Observable<Book[]> = of([]);
   constructor(private bs: BookService) {}
+  // term$: Subject<string> = new Subject();
+  term$: Subject<string> = new BehaviorSubject('');
 
   ngOnInit(): void {
-    this.books$ = this.bs.getBooks();
-  }
-
-  search(term: string) {
-    this.books$ = this.bs.search(of(term));
+    // this.books$ = merge(this.bs.getBooks(), this.bs.search(this.term$));
+    this.books$ = this.bs.search(this.term$);
   }
 }
