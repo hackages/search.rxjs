@@ -8,5 +8,5 @@ export class SearchComponentComponent {
   constructor() {}
 
   @Input()
-  termEmitter;
+  termEmitter: EventEmitter<string>;
 }
