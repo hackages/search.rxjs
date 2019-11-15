@@ -10,13 +10,13 @@ import { Observable, of, merge } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'Bookstore By Hackages Lab';
   books$: Observable<Book[]> = of([]);
-  term$: EventEmitter<string> = new EventEmitter();
   constructor(private bs: BookService) {}
 
   ngOnInit(): void {
-    this.books$ = merge(
-      this.bs.getBooks(),
-      this.bs.search(this.term$.asObservable())
-    );
+    this.books$ = this.bs.getBooks();
+  }
+
+  search(term: string) {
+    this.books$ = this.bs.search(of(term));
   }
 }
